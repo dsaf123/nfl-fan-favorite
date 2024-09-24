@@ -1,0 +1,25 @@
+name: Test and Build web build
+on: 
+    workflow_dispatch:
+    push:
+        branches:
+        - master
+jobs:
+  build:
+    name: Build WEB
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: subosito/flutter-action@v1
+      with:
+        flutter-version: '3.5.3'
+    - name: Download Dependencies
+      run: flutter pub get
+    - run: flutter test
+    - name: Build
+      run: flutter build web
+    - name: Deploy
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "build/web/*"
+        token: ${{ secrets.TOKEN }}

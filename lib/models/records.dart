@@ -47,7 +47,7 @@ class Records with _$Records {
     }
     // print($ref);
     // print(hasLoaded);
-    // print(this);
+    print('this is: $this');
     return Future.value(this);
   }
 

@@ -260,6 +260,7 @@ class Team with _$Team {
     // Probably should think of a better way to do this...
     if ($ref != "") {
       if (cache.containsKey($ref)) {
+        updateFromLoad(cache[$ref]!);
         return Future.value(cache[$ref]);
       }
 
@@ -270,14 +271,8 @@ class Team with _$Team {
       Future<Team> team = response.then(
         (value) {
           Team loadedValue = Team.fromJson(jsonDecode(value.body));
-          name = loadedValue.name;
-          id = loadedValue.id;
-          displayName = loadedValue.displayName;
-          logos = loadedValue.logos;
-          record = loadedValue.record;
-          nickname = loadedValue.nickname;
-          events = loadedValue.events;
 
+          updateFromLoad(loadedValue);
           cache[$ref] = loadedValue;
 
           return loadedValue;
@@ -287,6 +282,16 @@ class Team with _$Team {
       return team;
     }
     return Future.value(null);
+  }
+
+  void updateFromLoad(Team loadedValue) {
+    name = loadedValue.name;
+    id = loadedValue.id;
+    displayName = loadedValue.displayName;
+    logos = loadedValue.logos;
+    record = loadedValue.record;
+    nickname = loadedValue.nickname;
+    events = loadedValue.events;
   }
 
   factory Team.fromJson(Map<String, Object?> json) => _$TeamFromJson(json);

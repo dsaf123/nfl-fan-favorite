@@ -73,16 +73,13 @@ class _TeamTileState extends State<TeamTile> {
     enforceLoadTeam().then((val) => {enforceLoadRecord().then((value) {})});
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   Future<Team?> enforceLoadTeam() async {
     Future<Team?> returnTeam;
+    print('this team is: ${{team}}');
     if (team.name == null) {
       returnTeam = team.load();
       returnTeam.then((v) {
+        print("after loading this team is: $v");
         if (mounted) {
           setState(() {});
         }
@@ -94,6 +91,7 @@ class _TeamTileState extends State<TeamTile> {
 
   Future<Records?> enforceLoadRecord() async {
     Future<Records?> returnRecord;
+    //print('this team: ${{team}}');
     if (team.record?.hasLoaded != true) {
       returnRecord = team.record!.load();
       returnRecord.then((v) {
