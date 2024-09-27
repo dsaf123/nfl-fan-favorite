@@ -1,0 +1,5 @@
+services:
+  fantasy-football-app:
+    build: .
+    ports:
+      - "8080:3054"
