@@ -34,7 +34,7 @@ class Athlete with _$Athlete {
       }
 
       final response = Client().get(
-        Uri.parse($ref),
+        Uri.parse($ref.replaceAll("http://", "https://")),
       );
 
       Future<Athlete> team = response.then(

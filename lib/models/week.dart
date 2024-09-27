@@ -30,7 +30,7 @@ class Week with _$Week {
       }
 
       final response = Client().get(
-        Uri.parse($ref),
+        Uri.parse($ref.replaceAll("http://", "https://")),
       );
 
       Future<Week> team = response.then(

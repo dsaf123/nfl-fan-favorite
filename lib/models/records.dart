@@ -29,7 +29,7 @@ class Records with _$Records {
       hasLoaded = true;
 
       final response = await Client().get(
-        Uri.parse($ref!),
+        Uri.parse($ref!.replaceAll("http://", "https://")),
       );
 
       // print(jsonDecode(response.body)["items"]);

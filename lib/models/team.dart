@@ -267,7 +267,7 @@ class Team with _$Team {
       }
 
       final response = Client().get(
-        Uri.parse($ref),
+        Uri.parse($ref.replaceAll("http://", "https://")),
       );
 
       Future<Team> team = response.then(
