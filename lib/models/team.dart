@@ -266,11 +266,11 @@ class Team with _$Team {
         return Future.value(cache[$ref]);
       }
 
+      print($ref.replaceAll("http://", "https://"));
+
       final response = Client().get(
         Uri.parse($ref.replaceAll("http://", "https://")),
       );
-
-      print($ref.replaceAll("http://", "https://"));
 
       Future<Team> team = response.then(
         (value) {
