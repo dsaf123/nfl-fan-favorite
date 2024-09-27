@@ -13,7 +13,9 @@ RUN flutter doctor -v
 RUN flutter channel master
 RUN flutter upgrade
 # Copy files to container and build
-RUN rm -rf /app
+RUN flutter clean
+RUN flutter pub get
+
 RUN mkdir /app/
 COPY . /app/
 WORKDIR /app/
