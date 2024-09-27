@@ -3,3 +3,4 @@ services:
     build: .
     ports:
       - "3054:80"
+    pull_policy: build

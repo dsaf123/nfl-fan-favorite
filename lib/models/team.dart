@@ -266,6 +266,8 @@ class Team with _$Team {
         return Future.value(cache[$ref]);
       }
 
+      print("TEST");
+
       print($ref.replaceAll("http://", "https://"));
 
       final response = Client().get(
