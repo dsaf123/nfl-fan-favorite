@@ -22,5 +22,5 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         artifacts: "build/web/*"
-        token: ${{ secrets.TOKEN }}
+        token: secrets.token
        
