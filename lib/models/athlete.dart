@@ -37,6 +37,8 @@ class Athlete with _$Athlete {
         Uri.parse($ref.replaceAll("http://", "https://")),
       );
 
+      print($ref.replaceAll("http://", "https://"));
+
       Future<Athlete> team = response.then(
         (value) {
           Athlete loadedValue = Athlete.fromJson(jsonDecode(value.body));

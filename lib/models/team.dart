@@ -270,6 +270,8 @@ class Team with _$Team {
         Uri.parse($ref.replaceAll("http://", "https://")),
       );
 
+      print($ref.replaceAll("http://", "https://"));
+
       Future<Team> team = response.then(
         (value) {
           Team loadedValue = Team.fromJson(jsonDecode(value.body));
