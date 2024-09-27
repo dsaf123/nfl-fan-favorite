@@ -39,6 +39,8 @@ mixin _$Event {
   List<Competition>? get competitions => throw _privateConstructorUsedError;
   set competitions(List<Competition>? value) =>
       throw _privateConstructorUsedError;
+  Week? get week => throw _privateConstructorUsedError;
+  set week(Week? value) => throw _privateConstructorUsedError;
 
   /// Serializes this Event to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -63,7 +65,10 @@ abstract class $EventCopyWith<$Res> {
       String? shortName,
       bool? hasLoaded,
       bool? timeValid,
-      List<Competition>? competitions});
+      List<Competition>? competitions,
+      Week? week});
+
+  $WeekCopyWith<$Res>? get week;
 }
 
 /// @nodoc
@@ -90,6 +95,7 @@ class _$EventCopyWithImpl<$Res, $Val extends Event>
     Object? hasLoaded = freezed,
     Object? timeValid = freezed,
     Object? competitions = freezed,
+    Object? week = freezed,
   }) {
     return _then(_value.copyWith(
       $ref: freezed == $ref
@@ -128,7 +134,25 @@ class _$EventCopyWithImpl<$Res, $Val extends Event>
           ? _value.competitions
           : competitions // ignore: cast_nullable_to_non_nullable
               as List<Competition>?,
+      week: freezed == week
+          ? _value.week
+          : week // ignore: cast_nullable_to_non_nullable
+              as Week?,
     ) as $Val);
+  }
+
+  /// Create a copy of Event
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $WeekCopyWith<$Res>? get week {
+    if (_value.week == null) {
+      return null;
+    }
+
+    return $WeekCopyWith<$Res>(_value.week!, (value) {
+      return _then(_value.copyWith(week: value) as $Val);
+    });
   }
 }
 
@@ -148,7 +172,11 @@ abstract class _$$EventImplCopyWith<$Res> implements $EventCopyWith<$Res> {
       String? shortName,
       bool? hasLoaded,
       bool? timeValid,
-      List<Competition>? competitions});
+      List<Competition>? competitions,
+      Week? week});
+
+  @override
+  $WeekCopyWith<$Res>? get week;
 }
 
 /// @nodoc
@@ -173,6 +201,7 @@ class __$$EventImplCopyWithImpl<$Res>
     Object? hasLoaded = freezed,
     Object? timeValid = freezed,
     Object? competitions = freezed,
+    Object? week = freezed,
   }) {
     return _then(_$EventImpl(
       $ref: freezed == $ref
@@ -211,6 +240,10 @@ class __$$EventImplCopyWithImpl<$Res>
           ? _value.competitions
           : competitions // ignore: cast_nullable_to_non_nullable
               as List<Competition>?,
+      week: freezed == week
+          ? _value.week
+          : week // ignore: cast_nullable_to_non_nullable
+              as Week?,
     ));
   }
 }
@@ -227,7 +260,8 @@ class _$EventImpl extends _Event {
       required this.shortName,
       required this.hasLoaded,
       required this.timeValid,
-      required this.competitions})
+      required this.competitions,
+      required this.week})
       : super._();
 
   factory _$EventImpl.fromJson(Map<String, dynamic> json) =>
@@ -251,10 +285,12 @@ class _$EventImpl extends _Event {
   bool? timeValid;
   @override
   List<Competition>? competitions;
+  @override
+  Week? week;
 
   @override
   String toString() {
-    return 'Event(\$ref: ${$ref}, id: $id, uid: $uid, date: $date, name: $name, shortName: $shortName, hasLoaded: $hasLoaded, timeValid: $timeValid, competitions: $competitions)';
+    return 'Event(\$ref: ${$ref}, id: $id, uid: $uid, date: $date, name: $name, shortName: $shortName, hasLoaded: $hasLoaded, timeValid: $timeValid, competitions: $competitions, week: $week)';
   }
 
   /// Create a copy of Event
@@ -283,7 +319,8 @@ abstract class _Event extends Event {
       required String? shortName,
       required bool? hasLoaded,
       required bool? timeValid,
-      required List<Competition>? competitions}) = _$EventImpl;
+      required List<Competition>? competitions,
+      required Week? week}) = _$EventImpl;
   _Event._() : super._();
 
   factory _Event.fromJson(Map<String, dynamic> json) = _$EventImpl.fromJson;
@@ -315,6 +352,9 @@ abstract class _Event extends Event {
   @override
   List<Competition>? get competitions;
   set competitions(List<Competition>? value);
+  @override
+  Week? get week;
+  set week(Week? value);
 
   /// Create a copy of Event
   /// with the given fields replaced by the non-null parameter values.

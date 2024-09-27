@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:http/http.dart';
+import 'package:nfl_fan_favorite/models/depthcharts.dart';
 import 'package:nfl_fan_favorite/models/events.dart';
 import 'package:nfl_fan_favorite/models/helpers/logo.dart';
 import 'package:nfl_fan_favorite/models/records.dart';
@@ -41,6 +42,7 @@ class Team with _$Team {
     required Venue? venue,
     required Records? record,
     required Events? events,
+    required Depthcharts? depthCharts,
     // },
     // "oddsRecords": {
     //   "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2024/types/0/teams/22/odds-records?lang=en&region=us"
@@ -292,6 +294,7 @@ class Team with _$Team {
     record = loadedValue.record;
     nickname = loadedValue.nickname;
     events = loadedValue.events;
+    depthCharts = loadedValue.depthCharts;
   }
 
   factory Team.fromJson(Map<String, Object?> json) => _$TeamFromJson(json);

@@ -44,6 +44,8 @@ class _EventTileState extends State<EventTile> {
           Event? myEvent = snapshot.data;
           return ListTile(
             title: Text(myEvent!.shortName ?? ""),
+            subtitle: Text(myEvent.displayTime),
+            trailing: Text(myEvent.week?.text ?? ""),
             leading: FutureBuilder(
                 future: awayTeam,
                 builder: (context, aTeamSnapshot) {

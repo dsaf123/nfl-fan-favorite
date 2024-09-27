@@ -34,6 +34,9 @@ _$TeamImpl _$$TeamImplFromJson(Map<String, dynamic> json) => _$TeamImpl(
       events: json['events'] == null
           ? null
           : Events.fromJson(json['events'] as Map<String, dynamic>),
+      depthCharts: json['depthCharts'] == null
+          ? null
+          : Depthcharts.fromJson(json['depthCharts'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$TeamImplToJson(_$TeamImpl instance) =>
@@ -57,4 +60,5 @@ Map<String, dynamic> _$$TeamImplToJson(_$TeamImpl instance) =>
       'venue': instance.venue,
       'record': instance.record,
       'events': instance.events,
+      'depthCharts': instance.depthCharts,
     };

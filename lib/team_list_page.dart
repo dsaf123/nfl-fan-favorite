@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nfl_fan_favorite/api.dart';
 import 'package:nfl_fan_favorite/models/records.dart';
 import 'package:nfl_fan_favorite/models/team.dart';
-import 'package:nfl_fan_favorite/team_page.dart';
+import 'package:nfl_fan_favorite/team_page/team_page.dart';
 
 class TeamListPage extends StatefulWidget {
   const TeamListPage({super.key});
@@ -75,11 +75,10 @@ class _TeamTileState extends State<TeamTile> {
 
   Future<Team?> enforceLoadTeam() async {
     Future<Team?> returnTeam;
-    print('this team is: ${{team}}');
+
     if (team.name == null) {
       returnTeam = team.load();
       returnTeam.then((v) {
-        print("after loading this team is: $v");
         if (mounted) {
           setState(() {});
         }

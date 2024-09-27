@@ -18,6 +18,9 @@ _$EventImpl _$$EventImplFromJson(Map<String, dynamic> json) => _$EventImpl(
       competitions: (json['competitions'] as List<dynamic>?)
           ?.map((e) => Competition.fromJson(e as Map<String, dynamic>))
           .toList(),
+      week: json['week'] == null
+          ? null
+          : Week.fromJson(json['week'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$EventImplToJson(_$EventImpl instance) =>
@@ -31,4 +34,5 @@ Map<String, dynamic> _$$EventImplToJson(_$EventImpl instance) =>
       'hasLoaded': instance.hasLoaded,
       'timeValid': instance.timeValid,
       'competitions': instance.competitions,
+      'week': instance.week,
     };
