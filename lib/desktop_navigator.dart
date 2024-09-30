@@ -1,12 +1,9 @@
-import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'package:nfl_fan_favorite/home.dart';
+import 'package:nfl_fan_favorite/apis/api.dart';
+import 'package:nfl_fan_favorite/home_page/home_page.dart';
 import 'package:nfl_fan_favorite/models/team.dart';
-import 'package:nfl_fan_favorite/player_page.dart';
-import 'package:nfl_fan_favorite/team_list_page.dart';
+import 'package:nfl_fan_favorite/player_page/player_page.dart';
+import 'package:nfl_fan_favorite/team_list_page/team_list_page.dart';
 
 class DesktopNavigator extends StatefulWidget {
   const DesktopNavigator({super.key, required this.title});
@@ -30,27 +27,10 @@ class _DesktopNavigatorState extends State<DesktopNavigator> {
   int currentPageIndex = 0;
   late Future<List<Team>> futureTeams;
 
-  Future<List<Team>> fetchTeams(Client client) async {
-    final response = await client.get(
-        Uri.parse(
-            'https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/teams'),
-        headers: {});
-
-    return compute(parseTeams, response.body);
-  }
-
-  List<Team> parseTeams(String responseBody) {
-    final parsed = jsonDecode(responseBody);
-    //print(parsed["items"]);
-    //parsed["items"].forEach((val) => print(val));
-
-    return parsed["items"].map<Team>((json) => Team.fromJson(json)).toList();
-  }
-
   @override
   void initState() {
     super.initState();
-    futureTeams = fetchTeams(Client());
+    futureTeams = Api.fetchTeams();
   }
 
   List<Widget> pages = [

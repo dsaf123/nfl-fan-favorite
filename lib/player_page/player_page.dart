@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nfl_fan_favorite/api.dart';
-import 'package:nfl_fan_favorite/fantasy/detailed_player.dart';
-import 'package:nfl_fan_favorite/fantasy/fantasy_player.dart';
-import 'package:nfl_fan_favorite/fantasy/helpers/fantasy_stats.dart';
-import 'package:nfl_fan_favorite/fantasy/player.dart';
-import 'package:nfl_fan_favorite/player_page/player_card.dart';
+import 'package:nfl_fan_favorite/apis/api.dart';
+import 'package:nfl_fan_favorite/models/fantasy/fantasy_player.dart';
 import 'package:nfl_fan_favorite/player_page/player_table/player_table.dart';
 
 class PlayerPage extends StatefulWidget {
@@ -30,13 +25,17 @@ class _PlayerPageState extends State<PlayerPage> {
         future: players,
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            print(snapshot.error);
             return const Placeholder();
           }
           if (snapshot.hasData) {
             return PlayerTable(players: snapshot.data!);
           }
-          return Container();
+          return Column(
+            children: [
+              const LinearProgressIndicator(),
+              Expanded(child: Container()),
+            ],
+          );
         });
   }
 }

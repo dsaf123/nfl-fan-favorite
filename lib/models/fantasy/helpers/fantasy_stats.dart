@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nfl_fan_favorite/fantasy/helpers/stat_snapshot.dart';
+import 'package:nfl_fan_favorite/models/fantasy/helpers/stat_snapshot.dart';
 
 part 'fantasy_stats.freezed.dart';
 

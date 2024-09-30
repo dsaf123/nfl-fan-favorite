@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nfl_fan_favorite/models/depthchart.dart';
 import 'package:nfl_fan_favorite/team_page/components/depth_chart_list_tile.dart';
 import 'package:nfl_fan_favorite/models/depthcharts.dart';

@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
-import 'package:nfl_fan_favorite/fantasy/fantasy_player.dart';
-import 'package:nfl_fan_favorite/fantasy/player.dart';
+import 'package:nfl_fan_favorite/models/fantasy/fantasy_player.dart';
+import 'package:nfl_fan_favorite/models/fantasy/player.dart';
 import 'package:nfl_fan_favorite/models/team.dart';
 
 class Api {
@@ -52,7 +52,6 @@ class Api {
 
   static List<FantasyPlayer> parseFantasyPlayers(String responseBody) {
     final parsed = jsonDecode(responseBody);
-    print(parsed["players"]);
     return parsed["players"]
         .map<FantasyPlayer>((json) => FantasyPlayer.fromJson(json))
         .toList();

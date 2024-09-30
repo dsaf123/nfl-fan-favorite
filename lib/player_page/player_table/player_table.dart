@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nfl_fan_favorite/fantasy/fantasy_player.dart';
+import 'package:nfl_fan_favorite/models/fantasy/fantasy_player.dart';
 import 'package:nfl_fan_favorite/player_page/player_card.dart';
 import 'package:nfl_fan_favorite/team_page/components/position_table/components/position_table_header_cell.dart';
 
@@ -31,9 +31,6 @@ class _PlayerTableState extends State<PlayerTable> {
   void initState() {
     super.initState();
     for (int i = 0; i < widget.players.length; i++) {
-      if (i == 0) {
-        print(widget.players[i].player.getStatsById("002024")?.stats);
-      }
       positionalRows.add(createTableRow(widget.players[i]));
     }
   }

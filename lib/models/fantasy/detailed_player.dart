@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nfl_fan_favorite/fantasy/helpers/draft_ranks_by_rank_type.dart';
-import 'package:nfl_fan_favorite/fantasy/helpers/fantasy_stats.dart';
-import 'package:nfl_fan_favorite/fantasy/helpers/ownership.dart';
+import 'package:nfl_fan_favorite/models/fantasy/helpers/draft_ranks_by_rank_type.dart';
+import 'package:nfl_fan_favorite/models/fantasy/helpers/fantasy_stats.dart';
+import 'package:nfl_fan_favorite/models/fantasy/helpers/ownership.dart';
 
 part 'detailed_player.freezed.dart';
 
@@ -45,10 +45,10 @@ class DetailedPlayer with _$DetailedPlayer {
   List<String> getStatIds({int? year}) {
     List<String> ids = [];
     for (int i = 0;
-        i < stats.where((FS) => (FS.seasonId == year || year == null)).length;
+        i < stats.where((fs) => (fs.seasonId == year || year == null)).length;
         i++) {
       ids.add(stats
-          .where((FS) => (FS.seasonId == year || year == null))
+          .where((fs) => (fs.seasonId == year || year == null))
           .toList()[i]
           .id);
     }

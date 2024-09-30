@@ -1,10 +1,9 @@
-import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'package:nfl_fan_favorite/home.dart';
+import 'package:nfl_fan_favorite/apis/api.dart';
+import 'package:nfl_fan_favorite/home_page/home_page.dart';
 import 'package:nfl_fan_favorite/models/team.dart';
+import 'package:nfl_fan_favorite/player_page/player_page.dart';
+import 'package:nfl_fan_favorite/team_list_page/team_list_page.dart';
 
 class MobileNavigator extends StatefulWidget {
   const MobileNavigator({super.key, required this.title});
@@ -30,82 +29,58 @@ class _MobileNavigatorState extends State<MobileNavigator> {
 
   bool isMobile = false;
 
-  Future<List<Team>> fetchTeams(Client client) async {
-    final response = await client.get(
-        Uri.parse(
-            'https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/teams'),
-        headers: {});
-
-    return compute(parseTeams, response.body);
-  }
-
-  List<Team> parseTeams(String responseBody) {
-    final parsed = jsonDecode(responseBody);
-    //print(parsed["items"]);
-    //parsed["items"].forEach((val) => print(val));
-
-    return parsed["items"].map<Team>((json) => Team.fromJson(json)).toList();
-  }
-
   @override
   void initState() {
     super.initState();
-    futureTeams = fetchTeams(Client());
+    futureTeams = Api.fetchTeams();
   }
 
-  List<Widget> pages = [const HomePage(), Container()];
+  List<Widget> pages = [
+    const HomePage(),
+    const TeamListPage(),
+    const PlayerPage()
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: isMobile
-          ? NavigationBar(
-              selectedIndex: currentPageIndex,
-              destinations: const <Widget>[
-                NavigationDestination(icon: Icon(Icons.home), label: "Home"),
-                NavigationDestination(
-                    icon: Icon(Icons.sports_football), label: "Teams"),
-              ],
-              onDestinationSelected: (int newIndex) {
-                setState(() {
-                  currentPageIndex = newIndex;
-                });
-              },
-            )
-          : Container(),
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: isMobile
-          ? pages[currentPageIndex]
-          : Row(
-              children: [
-                NavigationRail(
-                  destinations: const <NavigationRailDestination>[
-                    NavigationRailDestination(
-                      icon: Icon(Icons.home),
-                      label: Text("Home"),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.sports_football),
-                      label: Text("Teams"),
-                    )
-                  ],
-                  selectedIndex: currentPageIndex,
-                  onDestinationSelected: (value) => setState(() {
-                    currentPageIndex = value;
-                  }),
-                ),
-                const VerticalDivider(thickness: 1, width: 1),
-                const Expanded(
-                    child: Column(
-                  children: [
-                    Text("Hi"),
-                  ],
-                ))
-              ],
-            ),
+      drawer: NavigationDrawer(
+        selectedIndex: currentPageIndex,
+        onDestinationSelected: (value) => setState(() {
+          currentPageIndex = value;
+          Navigator.of(context).pop();
+        }),
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("Fan-Favorite",
+                style: Theme.of(context).textTheme.headlineSmall),
+          ),
+          const Divider(),
+          const NavigationDrawerDestination(
+            icon: Icon(Icons.home),
+            label: Text("Home"),
+          ),
+          const NavigationDrawerDestination(
+            icon: Icon(Icons.sports_football),
+            label: Text("Teams"),
+          ),
+          const NavigationDrawerDestination(
+            icon: Icon(Icons.person),
+            label: Text("Players"),
+          ),
+        ],
+      ),
+      body: Row(
+        children: [
+          const VerticalDivider(thickness: 1, width: 1),
+          Expanded(child: pages[currentPageIndex])
+        ],
+      ),
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nfl_fan_favorite/api.dart';
+import 'package:nfl_fan_favorite/apis/api.dart';
 import 'package:nfl_fan_favorite/models/records.dart';
 import 'package:nfl_fan_favorite/models/team.dart';
 import 'package:nfl_fan_favorite/team_page/team_page.dart';

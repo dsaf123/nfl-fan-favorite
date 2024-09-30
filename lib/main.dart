@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:nfl_fan_favorite/desktop_navigator.dart';
-import 'package:nfl_fan_favorite/home.dart';
 import 'package:nfl_fan_favorite/mobile_navigator.dart';
 import 'package:nfl_fan_favorite/models/team.dart';
 
@@ -16,6 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
@@ -47,10 +47,12 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
-  List<Widget> pages = [const HomePage(), Container()];
-
   @override
   Widget build(BuildContext context) {
+    var shortestSide = MediaQuery.of(context).size.shortestSide;
+    if (shortestSide < 600) {
+      isMobile = true;
+    }
     return isMobile
         ? const MobileNavigator(title: "Mobile Navigation")
         : const DesktopNavigator(title: "Desktop Navigation");
