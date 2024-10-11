@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:nfl_fan_favorite/apis/api.dart';
 import 'package:nfl_fan_favorite/models/records.dart';
 import 'package:nfl_fan_favorite/models/team.dart';
@@ -13,6 +14,7 @@ class TeamListPage extends StatefulWidget {
 
 class _TeamListPageState extends State<TeamListPage> {
   late Future<List<Team>> teams;
+  Logger logger = Logger();
 
   @override
   void initState() {
@@ -30,6 +32,11 @@ class _TeamListPageState extends State<TeamListPage> {
         future: teams,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            for (int i = 0; i < snapshot.data!.length; i++) {
+              logger.d(snapshot.data!.elementAt(i).groups?.name.toString());
+              //teamsByGroup[] = [];
+            }
+
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, childAspectRatio: childAspectRatio),

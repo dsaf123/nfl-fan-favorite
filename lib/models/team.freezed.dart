@@ -83,6 +83,8 @@ mixin _$Team {
   set events(Events? value) => throw _privateConstructorUsedError;
   Depthcharts? get depthCharts => throw _privateConstructorUsedError;
   set depthCharts(Depthcharts? value) => throw _privateConstructorUsedError;
+  Group? get groups => throw _privateConstructorUsedError;
+  set groups(Group? value) => throw _privateConstructorUsedError;
 
   /// Serializes this Team to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -118,12 +120,14 @@ abstract class $TeamCopyWith<$Res> {
       Venue? venue,
       Records? record,
       Events? events,
-      Depthcharts? depthCharts});
+      Depthcharts? depthCharts,
+      Group? groups});
 
   $VenueCopyWith<$Res>? get venue;
   $RecordsCopyWith<$Res>? get record;
   $EventsCopyWith<$Res>? get events;
   $DepthchartsCopyWith<$Res>? get depthCharts;
+  $GroupCopyWith<$Res>? get groups;
 }
 
 /// @nodoc
@@ -161,6 +165,7 @@ class _$TeamCopyWithImpl<$Res, $Val extends Team>
     Object? record = freezed,
     Object? events = freezed,
     Object? depthCharts = freezed,
+    Object? groups = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -243,6 +248,10 @@ class _$TeamCopyWithImpl<$Res, $Val extends Team>
           ? _value.depthCharts
           : depthCharts // ignore: cast_nullable_to_non_nullable
               as Depthcharts?,
+      groups: freezed == groups
+          ? _value.groups
+          : groups // ignore: cast_nullable_to_non_nullable
+              as Group?,
     ) as $Val);
   }
 
@@ -301,6 +310,20 @@ class _$TeamCopyWithImpl<$Res, $Val extends Team>
       return _then(_value.copyWith(depthCharts: value) as $Val);
     });
   }
+
+  /// Create a copy of Team
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $GroupCopyWith<$Res>? get groups {
+    if (_value.groups == null) {
+      return null;
+    }
+
+    return $GroupCopyWith<$Res>(_value.groups!, (value) {
+      return _then(_value.copyWith(groups: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -330,7 +353,8 @@ abstract class _$$TeamImplCopyWith<$Res> implements $TeamCopyWith<$Res> {
       Venue? venue,
       Records? record,
       Events? events,
-      Depthcharts? depthCharts});
+      Depthcharts? depthCharts,
+      Group? groups});
 
   @override
   $VenueCopyWith<$Res>? get venue;
@@ -340,6 +364,8 @@ abstract class _$$TeamImplCopyWith<$Res> implements $TeamCopyWith<$Res> {
   $EventsCopyWith<$Res>? get events;
   @override
   $DepthchartsCopyWith<$Res>? get depthCharts;
+  @override
+  $GroupCopyWith<$Res>? get groups;
 }
 
 /// @nodoc
@@ -374,6 +400,7 @@ class __$$TeamImplCopyWithImpl<$Res>
     Object? record = freezed,
     Object? events = freezed,
     Object? depthCharts = freezed,
+    Object? groups = freezed,
   }) {
     return _then(_$TeamImpl(
       id: freezed == id
@@ -456,6 +483,10 @@ class __$$TeamImplCopyWithImpl<$Res>
           ? _value.depthCharts
           : depthCharts // ignore: cast_nullable_to_non_nullable
               as Depthcharts?,
+      groups: freezed == groups
+          ? _value.groups
+          : groups // ignore: cast_nullable_to_non_nullable
+              as Group?,
     ));
   }
 }
@@ -483,7 +514,8 @@ class _$TeamImpl extends _Team {
       required this.venue,
       required this.record,
       required this.events,
-      required this.depthCharts})
+      required this.depthCharts,
+      required this.groups})
       : super._();
 
   factory _$TeamImpl.fromJson(Map<String, dynamic> json) =>
@@ -547,10 +579,12 @@ class _$TeamImpl extends _Team {
   Events? events;
   @override
   Depthcharts? depthCharts;
+  @override
+  Group? groups;
 
   @override
   String toString() {
-    return 'Team(id: $id, guid: $guid, uid: $uid, \$ref: ${$ref}, slug: $slug, location: $location, name: $name, nickname: $nickname, abbreviation: $abbreviation, displayName: $displayName, shortDisplayName: $shortDisplayName, color: $color, alternateColor: $alternateColor, isActive: $isActive, isAllStar: $isAllStar, logos: $logos, venue: $venue, record: $record, events: $events, depthCharts: $depthCharts)';
+    return 'Team(id: $id, guid: $guid, uid: $uid, \$ref: ${$ref}, slug: $slug, location: $location, name: $name, nickname: $nickname, abbreviation: $abbreviation, displayName: $displayName, shortDisplayName: $shortDisplayName, color: $color, alternateColor: $alternateColor, isActive: $isActive, isAllStar: $isAllStar, logos: $logos, venue: $venue, record: $record, events: $events, depthCharts: $depthCharts, groups: $groups)';
   }
 
   /// Create a copy of Team
@@ -590,7 +624,8 @@ abstract class _Team extends Team {
       required Venue? venue,
       required Records? record,
       required Events? events,
-      required Depthcharts? depthCharts}) = _$TeamImpl;
+      required Depthcharts? depthCharts,
+      required Group? groups}) = _$TeamImpl;
   _Team._() : super._();
 
   factory _Team.fromJson(Map<String, dynamic> json) = _$TeamImpl.fromJson;
@@ -664,6 +699,9 @@ abstract class _Team extends Team {
   @override
   Depthcharts? get depthCharts;
   set depthCharts(Depthcharts? value);
+  @override
+  Group? get groups;
+  set groups(Group? value);
 
   /// Create a copy of Team
   /// with the given fields replaced by the non-null parameter values.

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nfl_fan_favorite/fantasy/fantasy_player.dart';
-import 'package:nfl_fan_favorite/fantasy/helpers/stat_snapshot.dart';
+import 'package:nfl_fan_favorite/models/fantasy/fantasy_player.dart';
+import 'package:nfl_fan_favorite/models/fantasy/helpers/stat_snapshot.dart';
 
 class PlayerCard extends StatelessWidget {
   const PlayerCard({super.key, required this.player, this.statsId = "002024"});
@@ -45,6 +45,31 @@ TableRow createTableRow(FantasyPlayer player, {String statsId = "002024"}) {
   ]);
 }
 
+List<String> createTableRowStrings(FantasyPlayer player,
+    {String statsId = "002024"}) {
+  StatSnapshot stats = player.player.getStatsById(statsId)!.stats;
+  return <String>[
+    player.player.fullName,
+    statToString(stats.rushingAttempts),
+    statToString(stats.rushingYards),
+    statToString(stats.rushingTouchdowns),
+    statToString(stats.rushing2PtConversions),
+    statToString(stats.receivingReceptions),
+    statToString(stats.receivingYards),
+    statToString(stats.receivingTouchdowns),
+    statToString(stats.var30),
+    statToString(
+        fantasyPoints(
+            stats.rushingYards ?? 0,
+            stats.rushingTouchdowns ?? 0,
+            stats.rushing2PtConversions ?? 0,
+            stats.receivingYards ?? 0,
+            stats.receivingTouchdowns ?? 0,
+            stats.receivingReceptions ?? 0),
+        decimals: 1)
+  ];
+}
+
 double fantasyPoints(
     double rushingYards,
     double rushingTouchdowns,
@@ -68,4 +93,11 @@ Widget statToWidget(double? value, {int decimals = 0}) {
     verticalAlignment: TableCellVerticalAlignment.middle,
     child: Center(child: Text(value.toStringAsFixed(decimals))),
   );
+}
+
+String statToString(double? value, {int decimals = 0}) {
+  if (value == null) {
+    return "0";
+  }
+  return value.toStringAsFixed(decimals);
 }

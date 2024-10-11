@@ -35,11 +35,7 @@ class _MobileNavigatorState extends State<MobileNavigator> {
     futureTeams = Api.fetchTeams();
   }
 
-  List<Widget> pages = [
-    const HomePage(),
-    const TeamListPage(),
-    const PlayerPage()
-  ];
+  List<Widget> pages = [HomePage(), const TeamListPage(), const PlayerPage()];
 
   @override
   Widget build(BuildContext context) {

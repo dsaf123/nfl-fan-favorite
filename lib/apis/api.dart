@@ -18,15 +18,17 @@ class Api {
       "filterActive": {"value": true}
     })
   };
-  static Map<String, String> fantasyPlayersHeaders({int limit = 1}) {
-    return {
-      "X-Fantasy-Filter": jsonEncode({
-        "players": {
-          "limit": limit,
-          "sortPercOwned": {"sortPriority": 4, "sortAsc": false}
-        }
-      })
+  static Map<String, String> fantasyPlayersHeaders(
+      {int limit = 1, List<int>? slots}) {
+    Map<String, dynamic> retMap = {
+      "players": {
+        "limit": limit,
+        "sortPercOwned": {"sortPriority": 4, "sortAsc": false},
+        "filterSlotIds": {"value": slots}
+      },
     };
+
+    return {"X-Fantasy-Filter": jsonEncode(retMap)};
   }
 
   static const String fantasyPlayerList =
@@ -35,6 +37,7 @@ class Api {
   static Future<List<Player>> fetchPlayers() async {
     final response =
         await Client().get(Uri.parse(Api.playerList), headers: fantasyHeaders);
+
     return compute(parsePlayers, response.body);
   }
 
@@ -44,9 +47,10 @@ class Api {
   }
 
   static Future<List<FantasyPlayer>> fetchFantasyPlayers(
-      {int limit = 1}) async {
+      {int limit = 1, List<int>? slots}) async {
     final response = await Client().get(Uri.parse(Api.fantasyPlayerList),
-        headers: fantasyPlayersHeaders(limit: limit));
+        headers: fantasyPlayersHeaders(limit: limit, slots: slots));
+
     return compute(parseFantasyPlayers, response.body);
   }
 

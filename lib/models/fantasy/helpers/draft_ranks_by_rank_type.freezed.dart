@@ -20,7 +20,9 @@ DraftRanksByRankType _$DraftRanksByRankTypeFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DraftRanksByRankType {
-  DraftRank? get STANDARD => throw _privateConstructorUsedError;
+// ignore: non_constant_identifier_names
+  DraftRank? get STANDARD =>
+      throw _privateConstructorUsedError; // ignore: non_constant_identifier_names
   DraftRank? get PPR => throw _privateConstructorUsedError;
 
   /// Serializes this DraftRanksByRankType to a JSON map.
@@ -159,8 +161,10 @@ class _$DraftRanksByRankTypeImpl extends _DraftRanksByRankType {
   factory _$DraftRanksByRankTypeImpl.fromJson(Map<String, dynamic> json) =>
       _$$DraftRanksByRankTypeImplFromJson(json);
 
+// ignore: non_constant_identifier_names
   @override
   final DraftRank? STANDARD;
+// ignore: non_constant_identifier_names
   @override
   final DraftRank? PPR;
 
@@ -210,8 +214,9 @@ abstract class _DraftRanksByRankType extends DraftRanksByRankType {
   factory _DraftRanksByRankType.fromJson(Map<String, dynamic> json) =
       _$DraftRanksByRankTypeImpl.fromJson;
 
+// ignore: non_constant_identifier_names
   @override
-  DraftRank? get STANDARD;
+  DraftRank? get STANDARD; // ignore: non_constant_identifier_names
   @override
   DraftRank? get PPR;
 

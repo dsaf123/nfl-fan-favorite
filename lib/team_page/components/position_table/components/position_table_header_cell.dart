@@ -6,7 +6,9 @@ class PositionTableHeaderCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
+      color: Theme.of(context).primaryColorDark,
+      alignment: Alignment.centerLeft,
       padding: const EdgeInsets.all(8.0),
       child: Text(
         text,

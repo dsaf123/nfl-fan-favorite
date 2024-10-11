@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:nfl_fan_favorite/team_page/components/depth_chart_list_view.dart';
 import 'package:nfl_fan_favorite/models/events.dart';
 import 'package:nfl_fan_favorite/models/team.dart';
@@ -15,6 +16,7 @@ class TeamPage extends StatefulWidget {
 
 class _TeamPageState extends State<TeamPage> {
   late Future<Events?> events;
+  Logger logger = Logger();
 
   @override
   void initState() {
